@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :require_teacher, except: [:index, :show]
 
   # GET /videos
   # GET /videos.json

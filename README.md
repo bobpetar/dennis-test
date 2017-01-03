@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Make sure to run `bundle install` to install all gems
 
-* Ruby version
+Postgres database:
+database: petar_test
+user: petar_test
 
-* System dependencies
+'rake db:migrate db:seed'
 
-* Configuration
+Only teachers can create, edit and delete Images, Videos and Categories
+Before using the app make sure you create at least:
+- One category
+- One Image that belongs_to category
+- One Video that belongs_to category
 
-* Database creation
+After seed instructions:
 
-* Database initialization
+For teacher use
+email: 'teacher@example.com'
+password: 'password'
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For normal (student) user use
+email: 'email@example.com'
+password: 'password'

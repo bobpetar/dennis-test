@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :require_teacher, except: [:index, :show]
 
   # GET /categories
   # GET /categories.json
@@ -73,4 +74,6 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
+
+    
 end
