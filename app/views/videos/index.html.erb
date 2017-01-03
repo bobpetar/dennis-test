@@ -1,0 +1,20 @@
+<%- model_class = Video -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_video_path,
+            :class => 'btn btn-primary' %>
+
+<% @videos.each do |video| %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1" style="border: 1px solid #eee; padding: 30px; background: #eeefff;">
+      <div align="center">
+        Title / Name: <%= video.name %> <br><br>
+        Created by: <%= User.find(video.user_id).email %> <br><br>
+        <%= raw(youtube_embed(video.url)) %> <br><br>
+        <%= link_to 'Open video', video_path(video), class: "btn btn-info" %>
+      </div>
+    </div>
+  </div>
+<% end %>
