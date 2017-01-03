@@ -8,6 +8,7 @@
     <div align="center">
       Title / Name: <%= @video.name %> <br><br>
       Created by: <%= User.find(@video.user_id).email %> <br><br>
+      Category: <%= @video.category.name %> <br><br>
       <%= raw(youtube_embed(@video.url)) %>
     </div>
   </div>

@@ -14,6 +14,7 @@
       <div align="center">
         <%= image_tag(image.picture.url, size: "300x300")  %> <br><br>
         Created by: <%= User.find(image.user_id).email %> <br><br>
+        Category: <%= image.category.name %> <br><br>
         <%= link_to 'Open image', image_path(image), class: "btn btn-info" %>
       </div>
     </div>

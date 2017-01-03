@@ -3,14 +3,17 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @image.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:picture) %>:</strong></dt>
-  <dd><%= image_tag(@image.picture.url, size: "300x300") if @image.picture? %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= User.find(@image.user_id).email %></dd>
-</dl>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3" style="border: 1px solid #eee; padding: 30px; background: #eeefff;">
+    <div align="center">
+      <%= image_tag(@image.picture.url, size: "300x300")  %> <br><br>
+      Created by: <%= User.find(@image.user_id).email %> <br><br>
+      Category: <%= @image.category.name %>
+    </div>
+  </div>
+</div>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               images_path, :class => 'btn btn-default'  %>

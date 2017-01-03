@@ -1,0 +1,52 @@
+<%- model_class = Category -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              categories_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_category_path(@category), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              category_path(@category),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @category.name %></dd>
+</dl>
+
+<div class="col-md-4">
+  <h3>All Images in this category</h3>
+  <% @content_images.each do |image| %>
+    <div class="row">
+      <div class="col-md-12" style="border: 1px solid #eee; padding: 30px; background: #eeefff;">
+        <div align="center">
+          <%= image_tag(image.picture.url, size: "300x300")  %> <br><br>
+          Created by: <%= User.find(image.user_id).email %> <br><br>
+          Category: <%= image.category.name %> <br><br>
+          <%= link_to 'Open image', image_path(image), class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-8">
+  <h3>All Videos in this category</h3>
+  <% @content_videos.each do |video| %>
+    <div class="row">
+      <div class="col-md-12" style="border: 1px solid #eee; padding: 30px; background: #eeefff;">
+        <div align="center">
+          <%= raw(youtube_embed(video.url)) %> <br><br>
+          Title / Name: <%= video.name %> <br><br>
+          Created by: <%= User.find(video.user_id).email %> <br><br>
+          Category: <%= video.category.name %> <br><br>
+          <%= link_to 'Open video', video_path(video), class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
