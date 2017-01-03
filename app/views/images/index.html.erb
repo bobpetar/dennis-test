@@ -1,0 +1,21 @@
+<%- model_class = Image -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<% @images.each do |image| %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" style="border: 1px solid #eee; padding: 30px; background: #eeefff;">
+      <div align="center">
+        <%= image_tag(image.picture.url, size: "300x300")  %> <br><br>
+        Created by: <%= User.find(image.user_id).email %> <br><br>
+        <%= link_to 'Open image', image_path(image), class: "btn btn-info" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_image_path,
+            :class => 'btn btn-primary' %>
